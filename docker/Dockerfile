@@ -3,9 +3,9 @@
 
 FROM python:3.11-slim
 
-# Información del mantenedor
-LABEL maintainer="Juan David Arroyave Ramirez <juan_dav.arroyave@uao.edu.co>"
-LABEL description="EcoVision - Sistema de detección de latas y botellas con IA"
+# Información del contenedor
+LABEL maintainer="Stevens Bohorquez Ruiz <stevens.bohorquez@uao.edu.co>"
+LABEL description="LatVision - Sistema de detección de latas y botellas con IA"
 LABEL version="1.0"
 
 # Variables de entorno

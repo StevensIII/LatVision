@@ -6,6 +6,10 @@ import mlflow.pytorch
 import matplotlib.pyplot as plt
 import os
 import torch
+from ultralytics import settings
+import json
+import pandas as pd
+import glob
 
 def get_optimal_device():
     """Detecta automáticamente el mejor dispositivo (GPU si disponible, CPU si no)"""
@@ -36,13 +40,16 @@ def main():
     device = get_optimal_device()
 
     mlflow.set_tracking_uri("file:./mlruns")  # Tracking local
-    mlflow.set_experiment("EcoVision Nuevo")        # Elegir experimento
+    mlflow.set_experiment("LatVision")        # Elegir experimento
     with mlflow.start_run(run_name=args.run_name) as run:
         # Log parámetros (incluyendo dispositivo usado)
         mlflow.log_param("epochs", args.epochs)
         mlflow.log_param("img_size", args.imgsz)
         mlflow.log_param("data", args.data)
         mlflow.log_param("device", device)
+
+        # Desactivar el tracking interno de MLflow de Ultralytics
+        settings.update({"mlflow": False})
 
         # Cargar modelo base
         model = YOLO(args.model)
@@ -57,16 +64,33 @@ def main():
             device=device,  # Usa GPU automáticamente si está disponible
         )
 
-        # --- Log de métricas de manera segura ---
-        try:
-            if hasattr(results.box, "loss") and len(results.box.loss) > 0:
-                mlflow.log_metric("box_loss", float(results.box.loss[-1]))
-            if hasattr(results.seg, "loss") and len(results.seg.loss) > 0:
-                mlflow.log_metric("seg_loss", float(results.seg.loss[-1]))
-            if hasattr(results.box, "map") and isinstance(results.box.map, dict) and 0.5 in results.box.map:
-                mlflow.log_metric("mAP50", float(results.box.map[0.5]))
-        except Exception as e:
-            print(f"⚠️ No se pudieron loggear algunas métricas: {e}")
+        # Buscar el último results.csv dentro de runs/
+        csv_files = sorted(glob.glob("runs/**/results.csv", recursive=True), key=os.path.getmtime, reverse=True)
+
+        if csv_files:
+            results_path = csv_files[0]
+            print(f"📁 Cargando métricas desde: {results_path}")
+
+            df = pd.read_csv(results_path)
+            last_row = df.iloc[-1]
+
+            # Registrar todas las métricas numéricas en MLflow
+            for key, value in last_row.items():
+                if isinstance(value, (int, float)):
+                    # Limpieza de nombre para MLflow
+                    metric_name = (
+                        key.replace("/", "_")
+                        .replace("(", "")
+                        .replace(")", "")
+                        .replace("-", "_")
+                        .replace(" ", "_")
+                    )
+                    mlflow.log_metric(metric_name, float(value))
+
+            print("✅ Métricas registradas correctamente en MLflow desde el último run")
+        else:
+            print("⚠️ No se encontró ningún archivo results.csv en runs/, no se loggearon métricas")
+
 
         # Ruta del mejor peso
         best_weights_path = os.path.join(args.project, args.run_name, "weights", "best.pt")
