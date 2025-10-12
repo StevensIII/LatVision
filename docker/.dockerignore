@@ -1,4 +1,4 @@
-# .dockerignore (raíz) — Build mínima para runtime de EcoVision
+# .dockerignore (raíz) — Build mínima para runtime de LatVision
 # Mantén el contexto lo más pequeño posible: solo lo necesario para ejecutar Streamlit
 # Incluimos: main.py, src/data/**, src/models/**, requirements.txt y el logo
 
