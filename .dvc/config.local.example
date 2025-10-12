@@ -1,0 +1,4 @@
+['remote "azure_datasets"']
+    connection_string = DefaultEndpointsProtocol=https;AccountName=stlatvision;AccountKey=YOUR_KEY_HERE;EndpointSuffix=core.windows.net
+['remote "azure_modelos"']
+    connection_string = DefaultEndpointsProtocol=https;AccountName=stlatvision;AccountKey=YOUR_KEY_HERE;EndpointSuffix=core.windows.net

@@ -1,0 +1,9 @@
+Experimento Juan
+Run ID: c8781e76f1424e4ca0726df4c590906c
+md5: a4c10f1bf5b1aa88e50b9893f3f83834.dir
+Fecha: 10/07/2025
+
+Experimento Neiberth
+Run ID d6c1505e372d464490bcc6b6196eeda9
+md5: a4c10f1bf5b1aa88e50b9893f3f83834.dir
+Fecha 10/07/2025

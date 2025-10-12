@@ -1,0 +1,6 @@
+[core]
+    remote = azure_datasets
+['remote "azure_datasets"']
+    url = azure://proyecto-latvision/Datasets
+['remote "azure_modelos"']
+    url = azure://proyecto-latvision/Modelos-Produccion
