@@ -9,7 +9,7 @@ __pycache__/
 # Salidas de ejecución MLFlow
 mlruns/
 datasets/
-models/
+#models/
 outputs/
 runs/
 
@@ -222,7 +222,7 @@ uv.lock
 
 # YOLO downloaded models
 yolo*.pt
-*.pt
+#*.pt
 loss_plot.png
 yolo11n.pt
 
