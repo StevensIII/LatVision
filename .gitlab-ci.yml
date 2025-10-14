@@ -12,18 +12,18 @@ stages:
   - deploy
 
 run_test:
-    stage: test
-    image: ghcr.io/astral-sh/uv:$UV_VERSION-python$PYTHON_VERSION-$BASE_LAYER
-    before_script:
-        - apt-get update && apt-get install -y make libgl1 libglib2.0-0
-    script:
-        make test-all
-    cache:
-      key:
-        files:
-          - requirements.txt
-      paths:
-        - venv/
+  stage: test
+  image: ghcr.io/astral-sh/uv:$UV_VERSION-python$PYTHON_VERSION-$BASE_LAYER
+  before_script:
+    - apt-get update && apt-get install -y make libgl1 libglib2.0-0
+  script:
+    - make test-all
+  cache:
+    key:
+      files:
+        - requirements.txt
+    paths:
+      - venv/
 
 build_image:
   stage: build
@@ -35,7 +35,7 @@ build_image:
   before_script:
     - echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin
   script:
-    - docker build -t $IMAGE_NAME:$IMAGE_TAG .
+    - docker build -t $IMAGE_NAME:$IMAGE_TAG -f docker/Dockerfile .
     - docker push $IMAGE_NAME:$IMAGE_TAG
 
 deploy:
