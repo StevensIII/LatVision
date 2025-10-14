@@ -18,6 +18,8 @@ MLFLOW_PORT = 5000
 RUN_ID = 6e544580f9744497a274832cb3af07e1 
 MODEL_NAME = LatVisionModel10102025v1
 ARTIFACT_PATH := weights_model
+# Organizacion del python path para tests.
+PYTHONPATH := $(CURDIR)/src
 
 all: train
 
@@ -64,3 +66,7 @@ test-modelo:
 
 test-proceso:
 	set PYTHONPATH=.&& uv run pytest -v tests/test_processing.py
+
+# Ejecutar todos los tests
+test-all:
+	PYTHONPATH=$(PYTHONPATH) uv run pytest -v tests/
