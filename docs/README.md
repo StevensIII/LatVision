@@ -371,4 +371,4 @@ dic. de 2021. arXiv: 2507.11301. dirección: https://arxiv.org/html/2507.11301v1
 **Última Actualización**: Octubre 8, 2025
 **Estado del Proyecto**: Producción en desarrollo 🟡  
 
-# Prueba de pipeline automático 🚀
+# Prueba de pipeline automático - despliegue Droplet🚀
