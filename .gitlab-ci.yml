@@ -9,4 +9,4 @@ run_test:
     before_script:
         - apt-get update && apt-get install -y make libgl1 libglib2.0-0
     script:
-        make test-modelo
+        make test-proceso
