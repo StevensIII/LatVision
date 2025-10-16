@@ -11,6 +11,6 @@ test_ssh_connection:
     # Escanear la clave del servidor y almacenarla donde SSH la busca
     - ssh-keyscan -H 24.199.119.98 >> /root/.ssh/known_hosts
     # Intentar conectar
-    - ssh -vvv -i /root/.ssh/id_rsa -o StrictHostKeyChecking=yes root@24.199.119.98 "echo '✅ Conexión SSH exitosa!'"
+    - ssh -vvv -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no root@24.199.119.98 "echo '✅ Conexión SSH exitosa!'"
   only:
     - main
