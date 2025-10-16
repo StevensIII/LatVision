@@ -7,9 +7,15 @@
 [![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://docker.com)
 
 
-##  Autor
+##  Autores
 
-**Stevens Ricardo Bohorquez Ruiz**
+**Jose Luis Martinez Diaz** Codigo-UAO: ***2247574***
+
+**Juan David Arroyave Ramirez** Codigo-UAO: ***2250424***
+
+**Neiberth Aponte Aristizabal** Codigo-UAO: ***2251022*** 
+
+**Stevens Ricardo Bohorquez Ruiz** Codigo-UAO: ***2250760***
 
 ##  Descripción del Proyecto
 La gestión de residuos sólidos representa un desafío crítico en Colombia, donde la acumulación de latas y botellas plásticas contamina ecosistemas acuáticos y terrestres y eleva costos operativos de recolección. Este trabajo propone un sistema de inteligencia artificial basado en visión por computadora y Deep Learning para la detección y segmentación de latas y botellas, entrenado con YOLOv8 y desplegado
