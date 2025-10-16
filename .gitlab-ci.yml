@@ -34,6 +34,7 @@ build_image:
     - docker:28.5.1-dind
   before_script:
     - echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
   script:
     - docker build -t $IMAGE_NAME:$IMAGE_TAG -f docker/Dockerfile .
     - docker push $IMAGE_NAME:$IMAGE_TAG
