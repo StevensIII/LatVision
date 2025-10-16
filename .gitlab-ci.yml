@@ -5,10 +5,12 @@ test_ssh_connection:
     - apk add --no-cache openssh-client bash
   script:
     - echo "Probando conexión SSH..."
-    - mkdir -p .ssh
-    - cp "$SSH_KEY" .ssh/id_rsa
-    - chmod 600 .ssh/id_rsa
-    - ssh-keyscan -H 24.199.119.98 >> .ssh/known_hosts
-    - ssh -vvv -i .ssh/id_rsa -o StrictHostKeyChecking=yes root@24.199.119.98 "echo 'Conexión SSH exitosa!'"
+    - mkdir -p /root/.ssh
+    - cp "$SSH_KEY" /root/.ssh/id_rsa
+    - chmod 600 /root/.ssh/id_rsa
+    # Escanear la clave del servidor y almacenarla donde SSH la busca
+    - ssh-keyscan -H 24.199.119.98 >> /root/.ssh/known_hosts
+    # Intentar conectar
+    - ssh -vvv -i /root/.ssh/id_rsa -o StrictHostKeyChecking=yes root@24.199.119.98 "echo '✅ Conexión SSH exitosa!'"
   only:
     - main
