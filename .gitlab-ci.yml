@@ -51,7 +51,9 @@ deploy:
         set -e
         CONTAINER_NAME="latvision-app"
 
+        # Login a Docker
         echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin
+
         docker pull "$IMAGE_NAME:$IMAGE_TAG"
 
         if [ $(docker ps -q -f name=$CONTAINER_NAME) ]; then
@@ -62,4 +64,3 @@ deploy:
         docker run -d -p 8501:8501 --name $CONTAINER_NAME $IMAGE_NAME:$IMAGE_TAG
         docker image prune -f
       '
-
