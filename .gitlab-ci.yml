@@ -45,11 +45,13 @@ deploy:
   before_script:
     - apk add --no-cache openssh-client bash
   script:
+    # Preparamos SSH
     - mkdir -p .ssh
     - cp "$SSH_KEY" .ssh/id_rsa
     - chmod 600 .ssh/id_rsa
-    - ssh-keyscan -H 24.199.119.98 >> .ssh/known_hosts
-    - ssh -i .ssh/id_rsa root@24.199.119.98 '
+    - ssh-keyscan -H 24.199.119.98 > .ssh/known_hosts
+    # Conexión SSH y despliegue
+    - ssh -i .ssh/id_rsa -o StrictHostKeyChecking=yes root@24.199.119.98 '
         set -e
         CONTAINER_NAME="latvision-app"
         echo "StevensDocker" | docker login -u "stevensbohorquez" --password-stdin
