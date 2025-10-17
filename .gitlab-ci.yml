@@ -50,17 +50,18 @@ deploy:
     - ssh-keyscan -H 24.199.119.98 >> /root/.ssh/known_hosts
   script:
     - echo "Conectando al servidor remoto y desplegando..."
-    - ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=yes root@24.199.119.98 '
-        set -e
-        CONTAINER_NAME="latvision-app"
-        echo "$REGISTRY_PASSWORD" | docker login -u "REGISTRY_USER" --password-stdin
-        docker pull "stevensbohorquez/latvision-app:latvision-application-v1.0"
-        if [ $(docker ps -q -f name=$CONTAINER_NAME) ]; then
-          docker stop $CONTAINER_NAME
-          docker rm $CONTAINER_NAME
-        fi
-        docker run -d -p 8501:8501 --name $CONTAINER_NAME stevensbohorquez/latvision-app:latvision-application-v1.0
-        docker image prune -f
-      '
+    - |
+      ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=yes root@24.199.119.98 "
+        set -e;
+        CONTAINER_NAME='latvision-app';
+        echo '$REGISTRY_PASSWORD' | docker login -u '$REGISTRY_USER' --password-stdin;
+        docker pull 'stevensbohorquez/latvision-app:latvision-application-v1.0';
+        if [ \$(docker ps -q -f name=\$CONTAINER_NAME) ]; then
+          docker stop \$CONTAINER_NAME;
+          docker rm \$CONTAINER_NAME;
+        fi;
+        docker run -d -p 8501:8501 --name \$CONTAINER_NAME stevensbohorquez/latvision-app:latvision-application-v1.0;
+        docker image prune -f;
+      "
   only:
     - main
