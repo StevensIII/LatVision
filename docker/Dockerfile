@@ -25,6 +25,14 @@ RUN apt-get update && apt-get install -y \
     libgthread-2.0-0 \
     curl \
     libfontconfig1 \
+    libavformat-dev \
+    libavdevice-dev \
+    libavfilter-dev \
+    libavcodec-dev \
+    libswscale-dev \
+    libavutil-dev \
+    libopus-dev \
+    libvpx-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Crear directorio de trabajo
@@ -38,7 +46,7 @@ COPY pyproject.toml .
 COPY uv.lock* ./
 
 # Instalar dependencias con uv (mucho más rápido que pip)
-RUN uv pip install --system --no-cache -r pyproject.toml
+RUN uv sync --frozen --no-cache
 
 # Copiar código fuente
 COPY main.py .
