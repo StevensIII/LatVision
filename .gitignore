@@ -218,7 +218,7 @@ __marimo__/
 
 
 # UV
-uv.lock
+#uv.lock
 
 # YOLO downloaded models
 yolo*.pt
