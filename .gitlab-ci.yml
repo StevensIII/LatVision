@@ -49,18 +49,22 @@ deploy:
     - chmod 600 /root/.ssh/id_rsa
     - ssh-keyscan -H 24.199.119.98 >> /root/.ssh/known_hosts
   script:
-  - ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no root@24.199.119.98 "
-      echo 'Limpiando espacio antes del deploy...';
-      docker system prune -af || true;
-      echo 'Deteniendo contenedor previo si existe...';
-      if [ \$(docker ps -aq -f name=\$CONTAINER_NAME) ]; then
-        docker stop \$CONTAINER_NAME || true;
-        docker rm \$CONTAINER_NAME || true;
-      fi;
-      echo '⬇Descargando imagen nueva...';
-      docker pull stevensbohorquez/latvision-app:latvision-application-v1.0;
-      echo 'Desplegando contenedor...';
-      docker run -d -p 8501:8501 --name \$CONTAINER_NAME stevensbohorquez/latvision-app:latvision-application-v1.0;
-    "
+    - ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no root@24.199.119.98 "
+        CONTAINER_NAME=latvision-app;
+        IMAGE_NAME=stevensbohorquez/latvision-app;
+        IMAGE_TAG=latvision-application-v1.0;
+        echo 'Deteniendo contenedor previo si existe...';
+        if [ \$(docker ps -aq -f name=\$CONTAINER_NAME) ]; then
+          docker stop \$CONTAINER_NAME || true;
+          docker rm \$CONTAINER_NAME || true;
+        fi;
+        echo 'Limpiando espacio...';
+        docker system prune -af || true;
+        echo '⬇ Descargando imagen nueva...';
+        docker pull \$IMAGE_NAME:\$IMAGE_TAG;
+        echo 'Desplegando contenedor...';
+        docker run -d -p 8501:8501 --name \$CONTAINER_NAME \$IMAGE_NAME:\$IMAGE_TAG;
+      "
   only:
     - main
+    
