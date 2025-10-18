@@ -11,7 +11,7 @@ mlruns/
 datasets/
 #models/
 outputs/
-runs/
+#runs/
 
 # DVC (solo archivos locales o de caché)
 .dvc/config.local

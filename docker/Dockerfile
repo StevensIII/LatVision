@@ -48,6 +48,9 @@ COPY uv.lock* ./
 # Instalar dependencias (usa el lock si existe, o sincroniza si no)
 RUN if [ -f uv.lock ]; then uv sync --frozen --no-cache; else uv sync --no-cache; fi
 
+# Copiar carpeta de métricas
+COPY runs/ ./runs/
+
 # Copiar código fuente
 COPY main.py .
 COPY src/ ./src/

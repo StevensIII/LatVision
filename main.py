@@ -74,6 +74,28 @@ tab_camera, tab_metrics, tab_report = st.tabs(["📹 Cámara", "📊 Métricas",
 with tab_camera:
     st.subheader("📸 Captura y Detección")
 
+    # Mensaje amigable sobre permisos de cámara
+    st.info(
+        """
+        📹 **Para usar la cámara, debes permitir que esta página acceda a ella en tu navegador:**
+
+        - En PC: Revisa el icono de cámara en la barra del navegador y acepta.
+        **💻 Windows / Mac (Chrome/Edge):**
+        1. Haz clic en el icono de la cámara en la barra del navegador.
+        2. Selecciona "Permitir" para este sitio.
+
+        - En celular: Asegúrate de permitir el acceso a la cámara cuando el navegador lo solicite:
+        **📱 Android (Chrome):**
+        1. Abre la app del navegador.
+        2. Ve a Configuración → Permisos de cámara → Permitir para este sitio.
+
+        **📱 iOS (Safari):**
+        1. Ve a Configuración → Safari → Cámara → Permitir para este sitio.
+
+        ⚠️ Recuerda que sin este permiso, la app no podrá acceder a la cámara.
+            """
+    )
+
     # Selector de modo
     modo = st.radio("Selecciona modo:", ["📷 Captura de foto", "🎥 Video en vivo"], horizontal=True)
     conf = st.slider("Umbral de confianza", 0.0, 1.0, 0.5, 0.05)
