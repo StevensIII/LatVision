@@ -7,15 +7,15 @@
 [![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://docker.com)
 
 
-##  Autores
+##  Desarrolladores / Especialistas en Inteligencia Artificial
 
-**Jose Luis Martinez Diaz** Codigo-UAO: ***2247574***
+**Stevens Ricardo Bohorquez Ruiz** 
 
-**Juan David Arroyave Ramirez** Codigo-UAO: ***2250424***
+**Jose Luis Martinez Diaz** 
 
-**Neiberth Aponte Aristizabal** Codigo-UAO: ***2251022*** 
+**Juan David Arroyave Ramirez** 
 
-**Stevens Ricardo Bohorquez Ruiz** Codigo-UAO: ***2250760***
+**Neiberth Aponte Aristizabal** 
 
 ##  Descripción del Proyecto
 La gestión de residuos sólidos representa un desafío crítico en Colombia, donde la acumulación de latas y botellas plásticas contamina ecosistemas acuáticos y terrestres y eleva costos operativos de recolección. Este trabajo propone un sistema de inteligencia artificial basado en visión por computadora y Deep Learning para la detección y segmentación de latas y botellas, entrenado con YOLOv8 y desplegado
@@ -377,4 +377,3 @@ dic. de 2021. arXiv: 2507.11301. dirección: https://arxiv.org/html/2507.11301v1
 **Última Actualización**: Octubre 8, 2025
 **Estado del Proyecto**: Producción en desarrollo 🟡  
 
-# Prueba de pipeline automático - despliegue Droplet🚀
