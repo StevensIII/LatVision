@@ -1,4 +1,4 @@
-# LatVision: 
+# LatVision: https://www.ecovision.lat/
 ## Sistema de inteligencia artificial basado en visión por computadora para la detección de residuos contaminantes
 
 [![Python Version](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://python.org)
